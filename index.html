@@ -5,67 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RMGL — Photography</title>
 <meta name="description" content="RMGL Portfolio — photography by Ryan Lothian. Portraits, skating, landscape and street. London.">
-<meta name="theme-color" content="#0b0b0b">
+<meta name="theme-color" content="#0a0a09">
 <meta property="og:title" content="RMGL — Photography">
 <meta property="og:image" content="display/portraits-01.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0b0b0b;--ink:#ededea;--dim:#6f6f6b}
+  :root{
+    --bg:#0a0a09;
+    --ink:#f0efec;
+    --dim:#787772;
+    --line:#1d1d1b;
+    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
     font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
   img{display:block;width:100%;height:auto}
 
-  /* ---- full-height opening frame ---- */
-  .hero{position:relative;height:100svh;min-height:520px;overflow:hidden}
-  .hero img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
-  .hero::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to bottom,rgba(8,8,8,.55) 0%,rgba(8,8,8,.12) 34%,
-      rgba(8,8,8,.16) 62%,rgba(8,8,8,.9) 100%)}
-  .hero .over{position:absolute;inset:0;z-index:2;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:24px}
-  .hero .mark{font-size:clamp(1.5rem,7vw,2.6rem);letter-spacing:0.42em;
-    font-weight:400;text-indent:0.42em}
-  .hero .sub{margin-top:16px;font-size:0.7rem;letter-spacing:0.3em;
-    text-transform:uppercase;color:#cfcfca}
-  .scroll{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));
-    left:0;right:0;z-index:2;text-align:center;
-    font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:#b9b9b4}
+  .eyebrow{font-size:0.63rem;letter-spacing:0.34em;text-transform:uppercase;color:var(--dim)}
 
-  /* ---- category doors ---- */
-  .doors{display:flex;flex-direction:column}
-  .door{position:relative;display:block;overflow:hidden;
-    height:62svh;min-height:340px}
-  @media(min-width:900px){
-    .doors{flex-direction:row;flex-wrap:wrap}
-    .door{width:50%;height:56svh}
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(26px);
+    transition:opacity 1.1s cubic-bezier(.16,.7,.28,1),transform 1.1s cubic-bezier(.16,.7,.28,1)}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1!important;transform:none!important;transition:none!important}
+    *{animation:none!important}
   }
+
+  footer{padding:80px 20px calc(56px + env(safe-area-inset-bottom));text-align:center;
+    border-top:1px solid var(--line);margin-top:8vw}
+  .fmark{font-family:var(--serif);font-size:2rem;letter-spacing:0.2em;text-indent:0.2em}
+  .flinks{margin-top:22px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+  .flinks a{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--dim)}
+  .flinks a:hover{color:var(--ink)}
+  .fr{margin-top:26px;font-size:0.72rem;color:#4d4d49}
+
+  .hero{position:relative;height:100svh;min-height:540px;overflow:hidden}
+  .hero .fr{position:absolute;inset:0;margin:0}
+  .hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;
+    animation:drift 26s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:scale(1.0)}to{transform:scale(1.075)}}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;
+    background:
+      radial-gradient(120% 78% at 50% 42%,rgba(6,6,5,0) 34%,rgba(6,6,5,.62) 100%),
+      linear-gradient(to bottom,rgba(6,6,5,.42) 0%,rgba(6,6,5,0) 30%,
+        rgba(6,6,5,0) 58%,rgba(6,6,5,.94) 100%)}
+  .hero .over{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:24px}
+  .hero h1{font-family:var(--serif);font-weight:400;
+    font-size:clamp(3.3rem,17vw,8.5rem);line-height:.9;
+    letter-spacing:0.13em;text-indent:0.13em}
+  .hero .rule{width:52px;height:1px;background:rgba(240,239,236,.42);margin:24px auto 0}
+  .hero .sub{margin-top:22px;font-size:0.66rem;letter-spacing:0.36em;
+    text-transform:uppercase;color:#d3d2ce}
+  .scroll{position:absolute;bottom:calc(30px + env(safe-area-inset-bottom));left:0;right:0;
+    z-index:2;text-align:center;font-size:0.58rem;letter-spacing:0.3em;
+    text-transform:uppercase;color:#a9a8a3;animation:bob 3.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(5px);opacity:1}}
+
+  .intro{max-width:640px;margin:0 auto;padding:15vh 24px 12vh;text-align:center}
+  .intro p{font-family:var(--serif);font-size:clamp(1.35rem,4.6vw,1.95rem);
+    line-height:1.42;color:#dedcd7}
+  .intro .eyebrow{margin-bottom:26px}
+
+  .doors{display:flex;flex-direction:column}
+  .door{position:relative;display:block;overflow:hidden;height:66svh;min-height:360px}
+  @media(min-width:900px){.doors{flex-direction:row;flex-wrap:wrap}.door{width:50%;height:60svh}}
   .door img{width:100%;height:100%;object-fit:cover;
-    transition:transform .7s cubic-bezier(.2,.7,.3,1)}
-  .door:hover img{transform:scale(1.04)}
+    transition:transform 1.05s cubic-bezier(.2,.7,.3,1);filter:saturate(.94)}
+  .door:hover img{transform:scale(1.05);filter:saturate(1)}
   .door::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(8,8,8,.82) 0%,rgba(8,8,8,.05) 55%)}
-  .door .lab{position:absolute;left:0;right:0;bottom:0;z-index:2;
-    padding:0 0 30px;text-align:center;
-    font-size:0.74rem;letter-spacing:0.3em;text-transform:uppercase}
-  .door .n{display:block;margin-top:7px;font-size:0.62rem;
-    letter-spacing:0.2em;color:#a8a8a3}
+    background:linear-gradient(to top,rgba(6,6,5,.86) 4%,rgba(6,6,5,.06) 58%)}
+  .door .lab{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 20px 34px;
+    text-align:center}
+  .door .lab b{display:block;font-family:var(--serif);font-weight:400;
+    font-size:clamp(1.6rem,5.4vw,2.2rem);letter-spacing:.03em}
+  .door .lab span{display:block;margin-top:9px;font-size:0.6rem;letter-spacing:0.26em;
+    text-transform:uppercase;color:#b4b3ae}
 
-  .allrow{padding:52px 20px;text-align:center}
-  .allrow a{font-size:0.72rem;letter-spacing:0.26em;text-transform:uppercase;
-    color:var(--dim);padding-bottom:4px;box-shadow:0 1px 0 #333}
+  .allrow{padding:64px 20px;text-align:center}
+  .allrow a{font-size:0.68rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--dim);
+    padding-bottom:5px;box-shadow:0 1px 0 #2b2b28}
   .allrow a:hover{color:var(--ink);box-shadow:0 1px 0 var(--ink)}
-
-  footer{padding:34px 20px calc(44px + env(safe-area-inset-bottom));text-align:center;
-    font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--dim);
-    border-top:1px solid #1c1c1a}
-  footer a{color:var(--dim)}
-  footer a:hover{color:var(--ink)}
-  footer .r{margin-top:10px;letter-spacing:0.1em;text-transform:none;font-size:0.75rem}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -73,39 +100,57 @@
 <section class="hero">
   <img src="display/portraits-01.jpg" width="993" height="1500" alt="">
   <div class="over">
-    <div class="mark">RMGL</div>
+    <h1>RMGL</h1>
+    <div class="rule"></div>
     <div class="sub">Photography &middot; London</div>
   </div>
   <div class="scroll">Scroll</div>
 </section>
 
+<section class="intro rv">
+  <div class="eyebrow">Ryan Lothian</div>
+  <p>Portraits, skating and the street &mdash; shot in London, printed by hand.</p>
+</section>
+
 <nav class="doors">
-  <a class="door" href="portraits.html">
+  <a class="door rv" href="portraits.html">
     <img src="display/portraits-21.jpg" loading="lazy" alt="">
-    <span class="lab">Portraits<span class="n">21 photographs</span></span>
+    <span class="lab"><b>Portraits</b><span>21 photographs</span></span>
   </a>
-  <a class="door" href="skating.html">
+  <a class="door rv" href="skating.html">
     <img src="display/skating-01.jpg" loading="lazy" alt="">
-    <span class="lab">Skating<span class="n">12 photographs</span></span>
+    <span class="lab"><b>Skating</b><span>12 photographs</span></span>
   </a>
-  <a class="door" href="landscape.html">
+  <a class="door rv" href="landscape.html">
     <img src="display/landscape-01.jpg" loading="lazy" alt="">
-    <span class="lab">Landscape<span class="n">9 photographs</span></span>
+    <span class="lab"><b>Landscape</b><span>9 photographs</span></span>
   </a>
-  <a class="door" href="street.html">
+  <a class="door rv" href="street.html">
     <img src="display/street-01.jpg" loading="lazy" alt="">
-    <span class="lab">Street<span class="n">2 photographs</span></span>
+    <span class="lab"><b>Street</b><span>2 photographs</span></span>
   </a>
 </nav>
 
-<div class="allrow"><a href="all.html">View everything</a></div>
+<div class="allrow rv"><a href="all.html">View everything</a></div>
 
-<footer>
-  <a href="https://instagram.com/gg.zip" target="_blank" rel="noopener">@gg.zip</a>
-  &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-  <a href="https://dreadpirateduppie.github.io/gg-zip/">Prints</a>
-  <div class="r">Roaming Media Group London</div>
+<footer class="rv">
+  <div class="fmark">RMGL</div>
+  <div class="flinks">
+    <a href="https://instagram.com/gg.zip" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://dreadpirateduppie.github.io/gg-zip/">Prints &amp; prices</a>
+  </div>
+  <div class="fr">Roaming Media Group London</div>
 </footer>
 
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} });
+  },{rootMargin:'0px 0px -8% 0px',threshold:0.04});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 </body>
 </html>
