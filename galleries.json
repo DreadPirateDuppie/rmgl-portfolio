@@ -4,7 +4,6 @@
   "portraits-02.jpg",
   "portraits-03.jpg",
   "portraits-04.jpg",
-  "portraits-05.jpg",
   "portraits-06.jpg",
   "portraits-08.jpg",
   "portraits-09.jpg",
@@ -35,29 +34,11 @@
  ],
  "landscape": [
   "landscape-01.jpg",
-  "landscape-02.jpg",
   "landscape-03.jpg",
   "landscape-04.jpg",
   "landscape-05.jpg",
   "landscape-06.jpg",
-  "landscape-07.jpg",
   "landscape-08.jpg",
   "landscape-09.jpg"
- ],
- "street": [
-  "street-01.jpg",
-  "street-02.jpg"
- ],
- "home": [
-  "home-01.jpg",
-  "home-02.jpg",
-  "home-03.jpg",
-  "home-04.jpg",
-  "home-05.jpg",
-  "home-06.jpg",
-  "home-07.jpg",
-  "home-08.jpg",
-  "home-09.jpg",
-  "home-10.jpg"
  ]
 }
