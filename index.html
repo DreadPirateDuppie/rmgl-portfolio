@@ -3,140 +3,158 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RMGL Portfolio</title>
+<title>RMGL — Photography</title>
 <meta name="description" content="RMGL Portfolio — photography by Ryan Lothian. London.">
-<meta name="theme-color" content="#111110">
+<meta name="theme-color" content="#0b0b0b">
 <style>
-  :root{--bg:#111110;--bg-2:#191917;--line:#2b2b28;--ink:#f4f1ea;--ink-dim:#a29d95;--accent:#e8c547}
+  :root{
+    --bg:#0b0b0b;
+    --ink:#ededea;
+    --dim:#6f6f6b;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
-  body{background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
-    font-size:17px;line-height:1.4;-webkit-font-smoothing:antialiased;
-    padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:calc(70px + env(safe-area-inset-bottom));
+  }
   a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
-  header{padding:34px 0 22px;text-align:center}
-  header h1{font-size:1.6rem;font-weight:700;letter-spacing:-0.02em}
-  header p{margin-top:7px;color:var(--ink-dim);font-size:0.98rem}
-  nav.cats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
-  nav.cats a{padding:9px 15px;border:1px solid var(--line);border-radius:999px;
-    font-size:0.9rem;font-weight:600;background:var(--bg-2)}
-  nav.cats a[aria-current]{background:var(--accent);color:#141400;border-color:var(--accent)}
-  h2.sec{font-size:1.25rem;margin:30px 0 14px;letter-spacing:-0.02em}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-  @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
-  @media(min-width:920px){.grid{grid-template-columns:repeat(4,1fr)}}
-  .grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;
-    background:var(--bg-2);cursor:zoom-in}
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
-  @media(min-width:760px){.cards{grid-template-columns:repeat(4,1fr)}}
-  .card{position:relative;border-radius:12px;overflow:hidden;background:var(--bg-2);
-    border:1px solid var(--line)}
-  .card img{width:100%;aspect-ratio:3/4;object-fit:cover}
-  .card span{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 11px;
-    font-weight:650;font-size:1rem;
-    background:linear-gradient(to top,rgba(10,10,9,.88),transparent)}
-  footer{margin-top:44px;padding:26px 0;text-align:center;color:var(--ink-dim);
-    font-size:0.85rem;border-top:1px solid var(--line)}
-  footer a{border-bottom:1px solid var(--line)}
-  /* lightbox */
-  #lb{position:fixed;inset:0;background:rgba(9,9,8,.97);display:none;
-    align-items:center;justify-content:center;z-index:99;padding:14px}
+  img{display:block;width:100%;height:auto}
+
+  /* ---- masthead: quiet, gets out of the way ---- */
+  header{padding:44px 20px 30px;text-align:center}
+  .mark{
+    font-size:0.82rem;letter-spacing:0.34em;text-transform:uppercase;
+    font-weight:500;
+  }
+  .sub{
+    margin-top:9px;font-size:0.72rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--dim);
+  }
+  nav{
+    display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+    margin-top:26px;
+  }
+  nav a{
+    font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--dim);padding-bottom:3px;
+  }
+  nav a[aria-current]{color:var(--ink);box-shadow:0 1px 0 var(--ink)}
+
+  /* ---- the work: one column, native ratios, room to breathe ---- */
+  .shots{
+    max-width:940px;margin:0 auto;
+    display:flex;flex-direction:column;
+    gap:14vw;
+    padding:6vw 0 0;
+  }
+  @media(min-width:780px){ .shots{gap:110px;padding-top:40px} }
+
+  .shots img{
+    cursor:zoom-in;
+    background:#141413;
+  }
+
+  footer{
+    margin-top:16vw;padding:34px 20px;text-align:center;
+    font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--dim);
+  }
+  footer a{color:var(--dim)}
+  footer a:hover{color:var(--ink)}
+  footer .r{margin-top:10px;letter-spacing:0.1em;text-transform:none;font-size:0.75rem}
+
+  /* ---- lightbox ---- */
+  #lb{position:fixed;inset:0;background:#070707;display:none;
+    align-items:center;justify-content:center;z-index:99}
   #lb.on{display:flex}
-  #lb img{max-width:100%;max-height:92vh;object-fit:contain;border-radius:4px}
-  #lb button{position:absolute;background:none;border:0;color:var(--ink);
-    font-size:2.4rem;line-height:1;cursor:pointer;padding:14px;
+  #lb img{max-width:100%;max-height:100vh;width:auto;object-fit:contain;cursor:zoom-out}
+  #lb button{position:absolute;background:none;border:0;color:#c9c9c5;
+    font-size:2rem;line-height:1;cursor:pointer;padding:18px;
     -webkit-tap-highlight-color:transparent}
-  #lbx{top:calc(6px + env(safe-area-inset-top));right:6px}
-  #lbp{left:2px;top:50%;transform:translateY(-50%)}
-  #lbn{right:2px;top:50%;transform:translateY(-50%)}
+  #lb button:hover{color:#fff}
+  #lbx{top:calc(4px + env(safe-area-inset-top));right:6px;font-size:2.2rem}
+  #lbp{left:0;top:50%;transform:translateY(-50%)}
+  #lbn{right:0;top:50%;transform:translateY(-50%)}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<header class="wrap">
-  <h1>RMGL Portfolio</h1>
-  <p>Photography &middot; London</p>
-  <nav class="cats">
-<a href="index.html" aria-current="page">All</a>
-<a href="portraits.html">Portraits</a>
-<a href="skating.html">Skating</a>
-<a href="landscape.html">Landscape</a>
-<a href="street.html">Street</a>
-</nav>
+<header>
+  <div class="mark">RMGL</div>
+  <div class="sub">Photography &middot; London</div>
+  <nav>
+  <a href="index.html" aria-current="page">All</a>
+  <a href="portraits.html">Portraits</a>
+  <a href="skating.html">Skating</a>
+  <a href="landscape.html">Landscape</a>
+  <a href="street.html">Street</a>
+  </nav>
 </header>
-<main class="wrap">
-<div class="cards">
-<a class="card" href="portraits.html"><img src="thumbs/portraits-01.jpg" loading="lazy" alt=""><span>Portraits &middot; 21</span></a>
-<a class="card" href="skating.html"><img src="thumbs/skating-01.jpg" loading="lazy" alt=""><span>Skating &middot; 12</span></a>
-<a class="card" href="landscape.html"><img src="thumbs/landscape-01.jpg" loading="lazy" alt=""><span>Landscape &middot; 9</span></a>
-<a class="card" href="street.html"><img src="thumbs/street-01.jpg" loading="lazy" alt=""><span>Street &middot; 2</span></a>
-</div>
-<h2 class="sec">Everything <span style="color:var(--ink-dim);font-weight:400">&middot; 44</span></h2>
-<div class="grid">
-<img src="thumbs/portraits-01.jpg" data-full="img/portraits-01.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-02.jpg" data-full="img/portraits-02.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-03.jpg" data-full="img/portraits-03.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-04.jpg" data-full="img/portraits-04.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-05.jpg" data-full="img/portraits-05.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-06.jpg" data-full="img/portraits-06.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-07.jpg" data-full="img/portraits-07.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-08.jpg" data-full="img/portraits-08.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-09.jpg" data-full="img/portraits-09.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-10.jpg" data-full="img/portraits-10.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-11.jpg" data-full="img/portraits-11.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-12.jpg" data-full="img/portraits-12.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-13.jpg" data-full="img/portraits-13.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-14.jpg" data-full="img/portraits-14.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-15.jpg" data-full="img/portraits-15.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-16.jpg" data-full="img/portraits-16.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-17.jpg" data-full="img/portraits-17.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-18.jpg" data-full="img/portraits-18.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-19.jpg" data-full="img/portraits-19.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-20.jpg" data-full="img/portraits-20.jpg" loading="lazy" alt="">
-<img src="thumbs/portraits-21.jpg" data-full="img/portraits-21.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-01.jpg" data-full="img/skating-01.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-02.jpg" data-full="img/skating-02.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-03.jpg" data-full="img/skating-03.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-04.jpg" data-full="img/skating-04.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-05.jpg" data-full="img/skating-05.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-06.jpg" data-full="img/skating-06.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-07.jpg" data-full="img/skating-07.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-08.jpg" data-full="img/skating-08.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-09.jpg" data-full="img/skating-09.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-10.jpg" data-full="img/skating-10.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-11.jpg" data-full="img/skating-11.jpg" loading="lazy" alt="">
-<img src="thumbs/skating-12.jpg" data-full="img/skating-12.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-01.jpg" data-full="img/landscape-01.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-02.jpg" data-full="img/landscape-02.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-03.jpg" data-full="img/landscape-03.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-04.jpg" data-full="img/landscape-04.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-05.jpg" data-full="img/landscape-05.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-06.jpg" data-full="img/landscape-06.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-07.jpg" data-full="img/landscape-07.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-08.jpg" data-full="img/landscape-08.jpg" loading="lazy" alt="">
-<img src="thumbs/landscape-09.jpg" data-full="img/landscape-09.jpg" loading="lazy" alt="">
-<img src="thumbs/street-01.jpg" data-full="img/street-01.jpg" loading="lazy" alt="">
-<img src="thumbs/street-02.jpg" data-full="img/street-02.jpg" loading="lazy" alt="">
+<main>
+<div class="shots">
+  <img src="display/portraits-01.jpg" data-full="img/portraits-01.jpg" width="993" height="1500" alt="">
+  <img src="display/portraits-02.jpg" data-full="img/portraits-02.jpg" width="993" height="1500" alt="">
+  <img src="display/portraits-03.jpg" data-full="img/portraits-03.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-04.jpg" data-full="img/portraits-04.jpg" width="1500" height="987" loading="lazy" alt="">
+  <img src="display/portraits-05.jpg" data-full="img/portraits-05.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/portraits-06.jpg" data-full="img/portraits-06.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-07.jpg" data-full="img/portraits-07.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/portraits-08.jpg" data-full="img/portraits-08.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-09.jpg" data-full="img/portraits-09.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-10.jpg" data-full="img/portraits-10.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-11.jpg" data-full="img/portraits-11.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/portraits-12.jpg" data-full="img/portraits-12.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-13.jpg" data-full="img/portraits-13.jpg" width="999" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-14.jpg" data-full="img/portraits-14.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-15.jpg" data-full="img/portraits-15.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-16.jpg" data-full="img/portraits-16.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-17.jpg" data-full="img/portraits-17.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-18.jpg" data-full="img/portraits-18.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-19.jpg" data-full="img/portraits-19.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-20.jpg" data-full="img/portraits-20.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/portraits-21.jpg" data-full="img/portraits-21.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-01.jpg" data-full="img/skating-01.jpg" width="999" height="1500" loading="lazy" alt="">
+  <img src="display/skating-02.jpg" data-full="img/skating-02.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-03.jpg" data-full="img/skating-03.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-04.jpg" data-full="img/skating-04.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-05.jpg" data-full="img/skating-05.jpg" width="1500" height="1500" loading="lazy" alt="">
+  <img src="display/skating-06.jpg" data-full="img/skating-06.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-07.jpg" data-full="img/skating-07.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/skating-08.jpg" data-full="img/skating-08.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/skating-09.jpg" data-full="img/skating-09.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-10.jpg" data-full="img/skating-10.jpg" width="993" height="1500" loading="lazy" alt="">
+  <img src="display/skating-11.jpg" data-full="img/skating-11.jpg" width="1500" height="1500" loading="lazy" alt="">
+  <img src="display/skating-12.jpg" data-full="img/skating-12.jpg" width="999" height="1500" loading="lazy" alt="">
+  <img src="display/landscape-01.jpg" data-full="img/landscape-01.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-02.jpg" data-full="img/landscape-02.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/landscape-03.jpg" data-full="img/landscape-03.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-04.jpg" data-full="img/landscape-04.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-05.jpg" data-full="img/landscape-05.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-06.jpg" data-full="img/landscape-06.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-07.jpg" data-full="img/landscape-07.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/landscape-08.jpg" data-full="img/landscape-08.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/landscape-09.jpg" data-full="img/landscape-09.jpg" width="1500" height="993" loading="lazy" alt="">
+  <img src="display/street-01.jpg" data-full="img/street-01.jpg" width="1500" height="999" loading="lazy" alt="">
+  <img src="display/street-02.jpg" data-full="img/street-02.jpg" width="1500" height="999" loading="lazy" alt="">
 </div>
 </main>
-<footer><div class="wrap">RMGL Media &middot; Roaming Media Group London<br><a href="https://instagram.com/gg.zip" target="_blank" rel="noopener">@gg.zip</a> &middot; <a href="https://dreadpirateduppie.github.io/gg-zip/">Prints &amp; prices</a></div></footer>
-<div id="lb"><button id="lbx" aria-label="Close">&times;</button>
-<button id="lbp" aria-label="Previous">&lsaquo;</button>
-<img id="lbi" alt="">
-<button id="lbn" aria-label="Next">&rsaquo;</button></div>
+<footer><a href="https://instagram.com/gg.zip" target="_blank" rel="noopener">@gg.zip</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="https://dreadpirateduppie.github.io/gg-zip/">Prints</a><div class="r">Roaming Media Group London</div></footer>
+<div id="lb"><button id="lbx" aria-label="Close">&times;</button><button id="lbp" aria-label="Previous">&lsaquo;</button><img id="lbi" alt=""><button id="lbn" aria-label="Next">&rsaquo;</button></div>
 <script>
 (function(){
-  var g=[].slice.call(document.querySelectorAll('.grid img'));
+  var g=[].slice.call(document.querySelectorAll('.shots img'));
   if(!g.length)return;
   var lb=document.getElementById('lb'),im=document.getElementById('lbi'),i=0;
-  function show(n){i=(n+g.length)%g.length;im.src=g[i].dataset.full;lb.classList.add('on');
-    document.body.style.overflow='hidden';}
+  function show(n){i=(n+g.length)%g.length;im.src=g[i].dataset.full;
+    lb.classList.add('on');document.body.style.overflow='hidden';}
   function hide(){lb.classList.remove('on');im.src='';document.body.style.overflow='';}
   g.forEach(function(el,n){el.addEventListener('click',function(){show(n)})});
   document.getElementById('lbx').onclick=hide;
+  im.onclick=hide;
   document.getElementById('lbp').onclick=function(e){e.stopPropagation();show(i-1)};
   document.getElementById('lbn').onclick=function(e){e.stopPropagation();show(i+1)};
   lb.addEventListener('click',function(e){if(e.target===lb)hide()});
